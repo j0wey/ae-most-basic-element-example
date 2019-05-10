@@ -5,6 +5,7 @@ import { createCustomElement } from '@angular/elements';
 import { RouterModule } from '@angular/router';
 import { AeChildComponent } from './ae-child/ae-child.component';
 
+import { SomeLibModule } from 'some-lib';
 
 @Component({
   selector: 'my-app', /* never used */
@@ -20,6 +21,7 @@ export class AppComponent {
 
 @NgModule({
   imports: [BrowserModule,
+    SomeLibModule,
     RouterModule.forRoot(
       [
         { path: 'ae/child', component: AeChildComponent }
