@@ -65,3 +65,14 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  * Needed for: All but Chrome, Firefox, Edge, IE11 and Safari 10
  */
 // import 'intl';  // Run `npm install --save intl`.
+
+
+ import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';  
+
+// This polyfill needs to be loaded 
+// via a script tag (!) after core-js
+// Origin: @webcomponents/webcomponentsjs
+
+if (!window['customElements']) {
+  document.write(`<script src="/assets/webcomponentsjs/webcomponents-loader.js"></script>`);
+}
