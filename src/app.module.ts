@@ -9,8 +9,6 @@ import { createCustomElement } from '@angular/elements';
   template: `Start editing to see some magic happen :)`
 })
 export class AppComponent {
-  @Input() foo: string;
-  @Output() bar: string;
 }
 
 @NgModule({
