@@ -1,4 +1,4 @@
-import { NgModule, DoBootstrap, Input, Output, Injector } from '@angular/core';
+import { NgModule, OnInit, DoBootstrap, EventEmitter, Input, Output, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
@@ -6,11 +6,26 @@ import { createCustomElement } from '@angular/elements';
 
 @Component({
   selector: 'my-app', /* never used */
-  template: `Start editing to see some magic happen :)`
+  template: `
+  <p>Proof that property bindings work:</p> <br>
+  Input: <b>{{ foo }}</b>
+  `,
+  styles: [`:host { 
+    display: block; 
+    margin: 3rem; 
+    padding: 0 1rem 1rem 1rem; 
+    border: 5px 
+    dashed darkred; 
+    }
+  `]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @Input() foo: string;
-  @Output() bar: string;
+  @Output() bar: EventEmitter<string> = new EventEmitter<string>();;
+
+  ngOnInit(): void {
+    setTimeout(() => { this.bar.next('YES') }, 2000);
+  }
 }
 
 @NgModule({

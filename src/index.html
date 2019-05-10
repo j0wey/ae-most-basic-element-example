@@ -1,2 +1,11 @@
-<!-- notice there is no tag for the Angualr Component selector -->
-<my-app-element></my-app-element>
+<!-- notice there is no tag for the Angular component selector -->
+<my-app-element foo="some input property""></my-app-element>
+
+<p>Do outputs work? <b id=event-content>HMMM...</b></p>
+
+<script>
+  const ce = document.querySelector('my-app-element ');
+  ce.addEventListener('bar', function(e) { 
+    document.getElementById('event-content').innerHTML = e.detail;
+  });
+</script>
