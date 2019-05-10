@@ -1,45 +1,29 @@
-import { NgModule, DoBootstrap, Input, Output, Injector } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Component } from '@angular/core';
-import { createCustomElement } from '@angular/elements';
-import { RouterModule } from '@angular/router';
-import { AeChildComponent } from './ae-child/ae-child.component';
-
-import { SomeLibModule } from 'some-lib';
-
-@Component({
-  selector: 'my-app', /* never used */
-  template: `
-  <ul>
-    <li><a routerLink="/ae/child">Route to child</a></li>
-  </ul>
-  <router-outlet></router-outlet>
-  `
-})
-export class AppComponent {
-}
+import { RouterModule } from "@angular/router";
+import { SomeLibModule } from "../projects/some-lib/src/lib/some-lib.module";
+import { AppComponent } from "./app.component";
+import { AcChildComponent } from './app/ac-child/ac-child.component';
 
 @NgModule({
-  imports: [BrowserModule,
+  imports: [
+    BrowserModule,
     SomeLibModule,
     RouterModule.forRoot(
       [
-        { path: 'ae/child', component: AeChildComponent }
+        { path: 'ac/child', component: AcChildComponent }
       ]
     )
   ],
-  declarations: [AppComponent, AeChildComponent],
-  entryComponents: [
-    AppComponent
+  declarations: [
+    AppComponent,
+    AcChildComponent
   ],
-  bootstrap: [ /* nothing in here! */]
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+  bootstrap: [ AppComponent ]
 })
-export class AppModule implements DoBootstrap {
-  constructor(injector: Injector) {
-    const MyAppElement = createCustomElement(AppComponent, { injector: injector });
-    customElements.define('my-app-element', MyAppElement);
-  }
-
-  ngDoBootstrap() {
-  }
+export class AppModule {
+  /* application is bootstrapped by Angular again */
 }
